@@ -1,0 +1,19 @@
+function yourRobot({ place, parcels }, route) {
+  if (route.length === 0) {
+    let routes = parcels.map(parcel => {
+      if (parcel.place !== place) {
+        return { route: findRoute(roadGraph, place, parcel.place), pickUp: true };
+      } else {
+        return { route: findRoute(roadGraph, place, parcel.address), pickUp: false };
+      }
+    });
+
+    // Choose the route with the fewest steps
+    let shortest = routes.reduce((a, b) => a.route.length < b.route.length ? a : b);
+    route = shortest.route;
+  }
+
+  return { direction: route[0], memory: route.slice(1) };
+}
+
+compareRobots(goalOrientedRobot, [], yourRobot, []);
