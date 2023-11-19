@@ -1,0 +1,14 @@
+function compareRobots(robot1, memory1, robot2, memory2) {
+  let steps1 = 0, steps2 = 0;
+
+  for (let i = 0; i < 100; i++) {
+    let state = VillageState.random();
+    steps1 += runRobot(state, robot1, memory1);
+    steps2 += runRobot(state, robot2, memory2);
+  }
+
+  console.log(`Average steps for Robot 1: ${steps1 / 100}`);
+  console.log(`Average steps for Robot 2: ${steps2 / 100}`);
+}
+
+compareRobots(routeRobot, [], goalOrientedRobot, []);
