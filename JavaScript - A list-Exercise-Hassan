@@ -1,0 +1,32 @@
+// Function to create a new list node
+function createNode(value, rest = null) {
+  return { value, rest };
+}
+
+// Example of a simple linked list: [1, 2, 3]
+let list = createNode(1,
+  createNode(2,
+    createNode(3)
+  )
+);
+
+// Function to convert a linked list to an array
+function listToArray(node) {
+  let array = [];
+  while (node !== null) {
+    array.push(node.value);
+    node = node.rest;
+  }
+  return array;
+}
+
+// Function to prepend a value to a linked list
+function prepend(value, node) {
+  return createNode(value, node);
+}
+
+// Example usage:
+console.log(listToArray(list)); // → [1, 2, 3]
+
+let modifiedList = prepend(0, list);
+console.log(listToArray(modifiedList)); // → [0, 1, 2, 3]
